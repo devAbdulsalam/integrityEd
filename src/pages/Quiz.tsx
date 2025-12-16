@@ -101,16 +101,16 @@ const Quiz = () => {
 		console.log('User submitted ratings:', data);
 		// Send to your backend here
 		setIsOpen(false);
-		navigate(`/module/${Number(id) + 1}`)
+		navigate(`/module/${Number(id) + 1}`);
 	};
 	const handleSkip = () => {
 		setIsOpen(false);
-		navigate(`/module/${Number(id) + 1}`)
+		navigate(`/module/${Number(id) + 1}`);
 	};
 	const handleShowRatingModal = () => {
 		const isRating = localStorage.getItem('gracei_rating');
 		if (isRating) {
-			navigate(`/module/${Number(id) + 1}`)
+			navigate(`/module/${Number(id) + 1}`);
 			return;
 		}
 		setIsOpen(true);
@@ -300,7 +300,7 @@ const Quiz = () => {
 								Review Answers
 							</Button> */}
 							<Button
-								onClick={() => )}
+								onClick={handleShowRatingModal}
 								variant="outline"
 								className="w-full"
 							>
