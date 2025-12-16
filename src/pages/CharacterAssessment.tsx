@@ -539,7 +539,7 @@ const CharacterAssessment = () => {
 	return (
 		<div className="min-h-screen bg-background pb-6">
 			<div className="max-w-md mx-auto">
-				<div className="flex items-center justify-between mb-6">
+				<div className="flex items-center justify-between my-6">
 					<button onClick={() => navigate(-1)}>
 						<ArrowLeft className="w-6 h-6 text-foreground" />
 					</button>
