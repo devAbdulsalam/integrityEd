@@ -197,7 +197,7 @@ const Module = () => {
 						Test your understanding with flash cards.
 					</p>
 					<Button
-						onClick={() => navigate(`/flashcard`)}
+						onClick={() => navigate(`/flashcard/${id}`)}
 						variant="outline"
 						className="w-full font-semibold py-6 text-lg"
 					>
