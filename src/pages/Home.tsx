@@ -5,7 +5,12 @@ import { HamburgerMenu } from '@/components/HamburgerMenu';
 import { BookOpen, Award, TrendingUp } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { ProgressBar } from '@/components/ProgressBar';
-import { getModule, getAllModuleIds, getModuleSet, getModulesByMode } from '@/data/module';
+import {
+	getModule,
+	getAllModuleIds,
+	getModuleSet,
+	getModulesByMode,
+} from '@/data/module';
 import React from 'react';
 
 interface UserProfile {

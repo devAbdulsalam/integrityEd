@@ -946,6 +946,11 @@ export const getModulesByMode = (difficulty: Difficulty = 'easy'): Module[] => {
 		.map((moduleSet) => moduleSet[difficulty])
 		.filter((module) => module !== undefined);
 };
+export const getAllModulesByMode = (difficulty: Difficulty = 'easy', modules: ModulesCollection): Module[] => {
+	return Object.values(modules)
+		.map((moduleSet) => moduleSet[difficulty])
+		.filter((module) => module !== undefined);
+};
 
 /**
  * Get a specific module by module key and difficulty

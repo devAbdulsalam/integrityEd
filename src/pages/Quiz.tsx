@@ -101,10 +101,23 @@ const Quiz = () => {
 		console.log('User submitted ratings:', data);
 		// Send to your backend here
 		setIsOpen(false);
+		const user = localStorage.getItem('user_profile');
+		if (user) {
+			const userData = JSON.parse(user);
+			userData.progress += 10;
+			localStorage.setItem('user_profile', JSON.stringify(userData));
+		}
+
 		navigate(`/module/${Number(id) + 1}`);
 	};
 	const handleSkip = () => {
 		setIsOpen(false);
+		const user = localStorage.getItem('user_profile');
+		if (user) {
+			const userData = JSON.parse(user);
+			userData.progress += 10;
+			localStorage.setItem('user_profile', JSON.stringify(userData));
+		}
 		navigate(`/module/${Number(id) + 1}`);
 	};
 	const handleShowRatingModal = () => {

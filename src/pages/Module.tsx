@@ -11,6 +11,7 @@ import { moduleIntros } from '@/data/characters';
 import { getModule, Difficulty, Module as ModuleType } from '@/data/module';
 import { getModuleDifficulty } from '@/utils/moduleProgression';
 import { getVideoUrlByTitle } from '@/data/videos';
+import { useModules } from '@/context/ModuleContext';
 
 interface UserProfile {
 	username: string;
@@ -31,6 +32,10 @@ const Module = () => {
 	const [module, setModule] = useState<ModuleType | null>(null);
 	const [showQuiz, setShowQuiz] = useState(false);
 	const [videoUrl, setVideoUrl] = useState('');
+	const { markModuleComplete } = useModules();
+
+	// console.log('context modules', modules);
+
 	useEffect(() => {
 		const storedData = localStorage.getItem('user_profile');
 		if (storedData.progress >= 100) {
@@ -41,7 +46,7 @@ const Module = () => {
 			setVideoUrl(data);
 		}
 	}, [id]);
-	getVideoUrlByTitle(`module${id}`);
+	// getVideoUrlByTitle(`module${id}`);
 	// console.log('videoUrl', );
 
 	useEffect(() => {
@@ -67,6 +72,16 @@ const Module = () => {
 	const handleIntroComplete = () => {
 		setShowIntro(false);
 		setIntroCompleted(true);
+		if (userData) {
+			localStorage.setItem(
+				'user_profile',
+				JSON.stringify({ ...userData, progress: userData.progress + 10 })
+			);
+		}
+	};
+	const handleComplete = () => {
+		markModuleComplete('module1', 'easy');
+		navigate(`/flashcard/${id}`);
 		if (userData) {
 			localStorage.setItem(
 				'user_profile',
@@ -119,7 +134,7 @@ const Module = () => {
 						module={module}
 						videoUrl={videoUrl}
 						showQuiz={showQuiz}
-						setShowQuiz={() => navigate(`/flashcard/${id}`)}
+						setShowQuiz={handleComplete}
 					/>
 
 					{/* Introduction */}

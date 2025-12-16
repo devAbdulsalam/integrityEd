@@ -20,6 +20,8 @@ import AiTutor from './pages/AiTutor';
 import FlashcardQuiz from './pages/FlashCard';
 import CharacterAssessment from './pages/CharacterAssessment';
 import LearningPattern from './pages/LearningPattern';
+import { useEffect } from 'react';
+import { ModuleProvider } from '@/context/ModuleContext';
 
 const queryClient = new QueryClient();
 
@@ -35,7 +37,11 @@ const OnboardingCheck = ({ children }: { children: React.ReactNode }) => {
 	return <>{children}</>;
 };
 
+
+
+
 const App = () => (
+	<ModuleProvider>
 	<ThemeProvider>
 		<QueryClientProvider client={queryClient}>
 			<TooltipProvider>
@@ -155,7 +161,8 @@ const App = () => (
 				</BrowserRouter>
 			</TooltipProvider>
 		</QueryClientProvider>
-	</ThemeProvider>
+		</ThemeProvider>
+	</ModuleProvider>
 );
 
 export default App;

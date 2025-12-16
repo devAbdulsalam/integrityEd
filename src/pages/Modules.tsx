@@ -1,27 +1,29 @@
-import { BottomNav } from "@/components/BottomNav";
-import { HamburgerMenu } from "@/components/HamburgerMenu";
-import { LearningPath } from "@/components/LearningPath";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Card } from "@/components/ui/card";
-import { BookOpen, Lock, Map, List } from "lucide-react";
-import { useNavigate } from "react-router-dom";
-import { ProgressBar } from "@/components/ProgressBar";
-import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
-import { getModulesByMode } from '@/data/module';
+import { BottomNav } from '@/components/BottomNav';
+import { HamburgerMenu } from '@/components/HamburgerMenu';
+import { LearningPath } from '@/components/LearningPath';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Card } from '@/components/ui/card';
+import { BookOpen, Lock, Map, List } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { ProgressBar } from '@/components/ProgressBar';
+import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { getAllModulesByMode, getModulesByMode } from '@/data/module';
+import { useModules } from '@/context/ModuleContext';
 
 const Modules = () => {
-  const navigate = useNavigate();
-  const [viewMode, setViewMode] = useState<'path' | 'list'>('list');
-  
-	const modules = getModulesByMode('easy');
-  // Find current active module
-  console.log(modules)
-  const currentModuleId = 1
-  // Calculate total progress
-  const totalProgress = 10
+	const navigate = useNavigate();
+	const [viewMode, setViewMode] = useState<'path' | 'list'>('list');
+	const { modules } = useModules();
+	const allModules = getAllModulesByMode('easy', modules);
 
-  return (
+	// Find current active module
+	//   console.log('myModules', myModules);
+	const currentModuleId = 1;
+	// Calculate total progress
+	const totalProgress = 10;
+
+	return (
 		<div className="min-h-screen bg-background pb-20">
 			{/* Header */}
 			<div className="sticky top-0 z-40 bg-background/95 backdrop-blur border-b border-border">
@@ -89,7 +91,7 @@ const Modules = () => {
 
 					{/* List View */}
 					<TabsContent value="list" className="mt-4 space-y-3">
-						{modules.map((module, index) => (
+						{allModules.map((module, index) => (
 							<motion.div
 								key={module.id}
 								initial={{ opacity: 0, y: 20 }}

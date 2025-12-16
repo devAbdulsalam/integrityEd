@@ -95,7 +95,7 @@ const FlashcardQuiz = () => {
 	const [currentCards, setCurrentCards] = useState<Flashcard[]>(() =>
 		getRandomFlashcards(flashcards, 5)
 	);
-		const { id } = useParams();
+	const { id } = useParams();
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [isFlipped, setIsFlipped] = useState(false);
 	const [showDetails, setShowDetails] = useState(false);
@@ -201,6 +201,15 @@ const FlashcardQuiz = () => {
 		speakText(currentCard.answer);
 	};
 
+	const handleNext = () => {
+		const user = localStorage.getItem('user_profile');
+		if (user) {
+			const userData = JSON.parse(user);
+			userData.progress += 10;
+			localStorage.setItem('user_profile', JSON.stringify(userData));
+		}
+		navigate(`/quiz/${id}`);
+	};
 	return (
 		<div className="min-h-screen bg-background">
 			<div className="max-w-md mx-auto p-6">
@@ -418,7 +427,7 @@ const FlashcardQuiz = () => {
 							New Set of Cards
 						</button>
 						<Button
-							onClick={() => navigate(`/quiz/${id}`)}
+							onClick={handleNext}
 							className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-6 text-lg"
 						>
 							Start Quiz
