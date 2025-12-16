@@ -927,14 +927,6 @@ export const modules: ModulesCollection = {
 	},
 };
 
-// export const getModule = (
-// 	id: string,
-// 	difficulty: Difficulty = 'medium'
-// ): Module | null => {
-// 	const moduleSet = modules[id as keyof typeof modules];
-// 	if (!moduleSet) return null;
-// 	return moduleSet[difficulty] || moduleSet.medium;
-// };
 
 export const getModuleSet = (id: string): ModuleSet | null => {
 	return modules[id as keyof typeof modules] || null;
