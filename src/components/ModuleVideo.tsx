@@ -8,7 +8,7 @@ import {
 	Eye,
 } from 'lucide-react';
 
-const VideoQuizModule = ({ module, showQuiz, setShowQuiz }) => {
+const VideoQuizModule = ({ module, showQuiz, setShowQuiz, videoUrl }) => {
 	const [hasCompletedVideo, setHasCompletedVideo] = useState(false);
 	const [videoProgress, setVideoProgress] = useState(0);
 	const [currentTime, setCurrentTime] = useState(0);
@@ -190,7 +190,7 @@ const VideoQuizModule = ({ module, showQuiz, setShowQuiz }) => {
 					{/* Video Element */}
 					<video
 						ref={videoRef}
-						src={module.video}
+						src={videoUrl}
 						className="w-full aspect-video"
 						poster="/placeholder.svg"
 						controls={false} // We'll use custom controls
@@ -440,7 +440,6 @@ const VideoQuizModule = ({ module, showQuiz, setShowQuiz }) => {
 				</AnimatePresence> */}
 			</div>
 
-			
 			{/* Debug/Admin Controls (Remove in production) */}
 			{/* {process.env.NODE_ENV === 'development' && (
 				<div className="fixed bottom-4 right-4 bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-xl border">

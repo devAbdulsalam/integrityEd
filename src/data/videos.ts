@@ -80,8 +80,10 @@ export const videos = [
 ];
 
 export const getVideoUrlByTitle = (title: string) => {
+    console.log('title', title);
 	const video = videos.find((video) => video.title === title);
-	if (video) {
+    if (video) {
+        console.log('video.url', video.url);
 		return video.url;
 	}
 	return 'https://hackathon-dev-stemslab.s3.us-east-1.amazonaws.com/content/Actual+module-1.mp4';

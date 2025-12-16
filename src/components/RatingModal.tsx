@@ -1,49 +1,44 @@
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
-const ratingEmojis = ['😕', '😐', '🙂', '😄', '🤩'];
+const emojis = ['😕', '😐', '🙂', '😄', '🤩'];
 
-export default function RatingModal({ isOpen, onClose }) {
+export default function RatingModal({ isOpen, handleSubmit, handleSkip }) {
 	const [ratings, setRatings] = useState({
 		content: 0,
 		tone: 0,
 		character: 0,
 	});
 
-	if (!isOpen) return null;
-
-	const handleRate = (type, value) => {
-		setRatings((prev) => ({ ...prev, [type]: value }));
+	const handleRate = (key, value) => {
+		setRatings((prev) => ({ ...prev, [key]: value }));
 	};
 
-	const handleSubmit = () => {
-		localStorage.setItem(
-			'gracei_rating',
-			JSON.stringify({
-				...ratings,
-				submittedAt: new Date().toISOString(),
-			})
-		);
+	const onSubmit = () => {
+		const payload = {
+			...ratings,
+			submittedAt: new Date().toISOString(),
+		};
 
-		onClose(); // close modal after save
+		localStorage.setItem('gracei_rating', JSON.stringify(payload));
+		handleSubmit(payload);
 	};
 
-	const renderRating = (label, key) => (
-		<div style={{ marginBottom: '1rem' }}>
-			<strong>{label}</strong>
-			<div style={{ display: 'flex', gap: '10px', marginTop: '6px' }}>
-				{ratingEmojis.map((emoji, index) => {
+	const renderRatingRow = (label, key) => (
+		<div className="space-y-2">
+			<p className="font-medium text-slate-700">{label}</p>
+			<div className="flex gap-3">
+				{emojis.map((emoji, index) => {
 					const value = index + 1;
+					const active = ratings[key] >= value;
+
 					return (
 						<button
 							key={value}
 							onClick={() => handleRate(key, value)}
-							style={{
-								fontSize: '1.5rem',
-								background: 'none',
-								border: 'none',
-								cursor: 'pointer',
-								opacity: ratings[key] >= value ? 1 : 0.4,
-							}}
+							className={`text-2xl transition-transform hover:scale-110 ${
+								active ? 'opacity-100' : 'opacity-40'
+							}`}
 						>
 							{emoji}
 						</button>
@@ -53,44 +48,71 @@ export default function RatingModal({ isOpen, onClose }) {
 		</div>
 	);
 
+	const isDisabled = Object.values(ratings).includes(0);
+
 	return (
-		<div style={overlayStyle}>
-			<div style={modalStyle}>
-				<h3>Rate Gracei 🌟</h3>
+		<AnimatePresence>
+			{isOpen && (
+				<div className="fixed inset-0 z-50 overflow-y-auto">
+					<div className="flex min-h-screen items-center justify-center p-4">
+						{/* Backdrop */}
+						<motion.div
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+							onClick={handleSkip}
+							className="fixed inset-0 bg-black/50 backdrop-blur-sm"
+						/>
 
-				{renderRating('📘 Content', 'content')}
-				{renderRating('🎤 Tone', 'tone')}
-				{renderRating('🧠 Character', 'character')}
+						{/* Modal */}
+						<motion.div
+							initial={{ opacity: 0, scale: 0.9, y: 20 }}
+							animate={{ opacity: 1, scale: 1, y: 0 }}
+							exit={{ opacity: 0, scale: 0.9, y: 20 }}
+							className="relative w-full max-w-2xl bg-gradient-to-br from-white to-blue-50 rounded-2xl shadow-2xl border border-slate-200 overflow-hidden"
+						>
+							<div className="p-6 space-y-6">
+								<div>
+									<h2 className="text-xl font-semibold text-slate-800">
+										Rate Gracei 🌟
+									</h2>
+									<p className="text-sm text-slate-600">
+										Your feedback helps improve the learning experience.
+									</p>
+								</div>
 
-				<div
-					style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px' }}
-				>
-					<button onClick={onClose}>Cancel</button>
-					<button
-						onClick={handleSubmit}
-						disabled={Object.values(ratings).includes(0)}
-					>
-						Submit
-					</button>
+								<div className="space-y-5">
+									{renderRatingRow('📘 Content', 'content')}
+									{renderRatingRow('🎤 Tone', 'tone')}
+									{renderRatingRow('🧠 Character', 'character')}
+								</div>
+
+								<div className="flex justify-between items-center pt-4">
+									<button
+										onClick={handleSkip}
+										className="text-sm text-slate-500 hover:text-slate-700"
+									>
+										Skip for now
+									</button>
+
+									<button
+										onClick={onSubmit}
+										disabled={isDisabled}
+										className={`px-5 py-2 rounded-xl text-white font-medium transition
+                      ${
+												isDisabled
+													? 'bg-slate-300 cursor-not-allowed'
+													: 'bg-blue-600 hover:bg-blue-700'
+											}`}
+									>
+										Submit Rating
+									</button>
+								</div>
+							</div>
+						</motion.div>
+					</div>
 				</div>
-			</div>
-		</div>
+			)}
+		</AnimatePresence>
 	);
 }
-
-/* Basic styles */
-const overlayStyle = {
-	position: 'fixed',
-	inset: 0,
-	background: 'rgba(0,0,0,0.4)',
-	display: 'flex',
-	alignItems: 'center',
-	justifyContent: 'center',
-};
-
-const modalStyle = {
-	background: '#fff',
-	padding: '20px',
-	borderRadius: '10px',
-	width: '320px',
-};

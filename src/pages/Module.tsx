@@ -12,6 +12,7 @@ import { getModule, Difficulty, Module as ModuleType } from '@/data/module';
 import { getModuleDifficulty } from '@/utils/moduleProgression';
 
 import RatingModal from '@/components/RatingModal';
+import { getVideoUrlByTitle } from '@/data/videos';
 
 interface UserProfile {
 	username: string;
@@ -32,13 +33,29 @@ const Module = () => {
 		useState<Difficulty>('medium');
 	const [module, setModule] = useState<ModuleType | null>(null);
 	const [showQuiz, setShowQuiz] = useState(false);
+	const videoUrl = getVideoUrlByTitle(`module${id}`);
+	// console.log('videoUrl', );
 
-	const handleSubmit = (ratings) => {
-		console.log('User submitted ratings:', ratings);
+	const handleSubmit = (data) => {
+		console.log('User submitted ratings:', data);
 		// Send to your backend here
+		setIsOpen(false);
 		setShowQuiz(true);
 	};
-
+	const handleSkip = () => {
+		setIsOpen(false);
+	};
+	const handleShowRatingModal = () => {
+		const isRating = localStorage.setItem(
+			'gracei_rating',
+			JSON.stringify(userData)
+		);
+		if (isRating) {
+			setShowQuiz(true);
+			return;
+		}
+		setIsOpen(true);
+	};
 	useEffect(() => {
 		const storedData = localStorage.getItem('user_profile');
 		if (storedData) {
@@ -78,7 +95,6 @@ const Module = () => {
 		);
 	}
 
-	
 	return (
 		<div className="min-h-screen bg-background pb-6">
 			<div className="max-w-md mx-auto">
@@ -182,8 +198,9 @@ const Module = () => {
 				<div className="p-6 space-y-6">
 					<ModuleVideo
 						module={module}
+						videoUrl={videoUrl}
 						showQuiz={showQuiz}
-						setShowQuiz={openModal()}
+						setShowQuiz={handleShowRatingModal}
 					/>
 
 					{/* Introduction */}
@@ -234,8 +251,12 @@ const Module = () => {
 						</p>
 					</section>
 				</div>
-
-				<RatingModal isOpen={isOpen} onClose={handleSubmit} />
+				<RatingModal
+					isOpen={isOpen}
+					handleSubmit={handleSubmit}
+					handleSkip={handleSkip}
+				/>
+				;
 			</div>
 		</div>
 	);

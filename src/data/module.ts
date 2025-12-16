@@ -91,7 +91,7 @@ export const modules: ModulesCollection = {
 	module2: {
 		easy: {
 			id: 2,
-			video: getVideoUrlByTitle('module1'),
+			video: getVideoUrlByTitle('module2'),
 			active: true,
 			title: 'Corruption and Good Governance',
 			description:
@@ -113,7 +113,7 @@ export const modules: ModulesCollection = {
 		},
 		medium: {
 			id: 2,
-			video: getVideoUrlByTitle('module1'),
+			video: getVideoUrlByTitle('module2'),
 			active: false,
 			title: 'Core Governance Concepts and Accountability Mechanisms',
 			description:
@@ -135,7 +135,7 @@ export const modules: ModulesCollection = {
 		},
 		hard: {
 			id: 2,
-			video: getVideoUrlByTitle('module1'),
+			video: getVideoUrlByTitle('module2'),
 			active: false,
 			title: 'Theoretical Debates and Institutional Quality',
 			description:
@@ -159,7 +159,7 @@ export const modules: ModulesCollection = {
 	module3: {
 		easy: {
 			id: 3,
-			video: getVideoUrlByTitle('module1'),
+			video: getVideoUrlByTitle('module3'),
 			active: true,
 			title: 'Corruption and Comparative Politics',
 			description:
@@ -181,7 +181,7 @@ export const modules: ModulesCollection = {
 		},
 		medium: {
 			id: 3,
-			video: getVideoUrlByTitle('module1'),
+			video: getVideoUrlByTitle('module3'),
 			active: false,
 			title: 'Political Corruption Manifestations and Voter Accountability',
 			description:
@@ -202,7 +202,7 @@ export const modules: ModulesCollection = {
 		},
 		hard: {
 			id: 3,
-			video: getVideoUrlByTitle('module1'),
+			video: getVideoUrlByTitle('module3'),
 			active: false,
 			title: 'Institutional Design and Systemic Reform',
 			description:
@@ -226,7 +226,7 @@ export const modules: ModulesCollection = {
 	module4: {
 		easy: {
 			id: 4,
-			video: getVideoUrlByTitle('module1'),
+			video: getVideoUrlByTitle('module4'),
 			active: true,
 			title: 'Public Sector Corruption',
 			description:
@@ -246,7 +246,7 @@ export const modules: ModulesCollection = {
 		},
 		medium: {
 			id: 4,
-			video: getVideoUrlByTitle('module1'),
+			video: getVideoUrlByTitle('module4'),
 			active: false,
 			title: 'Theoretical Models and High-Risk Sectors',
 			description: 'Application of key theories to public sector corruption.',
@@ -267,7 +267,7 @@ export const modules: ModulesCollection = {
 		},
 		hard: {
 			id: 4,
-			video: getVideoUrlByTitle('module1'),
+			video: getVideoUrlByTitle('module4'),
 			active: false,
 			title: 'Systemic Causes and Structural Prevention Strategies',
 			description:
@@ -290,7 +290,7 @@ export const modules: ModulesCollection = {
 	module5: {
 		easy: {
 			id: 5,
-			video: getVideoUrlByTitle('module1'),
+			video: getVideoUrlByTitle('module5'),
 			active: true,
 			title: 'Private Sector Corruption',
 			description:
@@ -312,7 +312,7 @@ export const modules: ModulesCollection = {
 		},
 		medium: {
 			id: 5,
-			video: getVideoUrlByTitle('module1'),
+			video: getVideoUrlByTitle('module5'),
 			active: false,
 			title: 'Corporate Liability and Compliance Mechanisms',
 			description:
@@ -333,7 +333,7 @@ export const modules: ModulesCollection = {
 		},
 		hard: {
 			id: 5,
-			video: getVideoUrlByTitle('module1'),
+			video: getVideoUrlByTitle('module5'),
 			active: false,
 			title: 'Structural Causes and Collective Action Strategies',
 			description:
@@ -355,7 +355,7 @@ export const modules: ModulesCollection = {
 	module6: {
 		easy: {
 			id: 6,
-			video: getVideoUrlByTitle('module1'),
+			video: getVideoUrlByTitle('module6'),
 			active: true,
 			title: 'Detecting and Investigating Corruption',
 			description:
@@ -377,7 +377,7 @@ export const modules: ModulesCollection = {
 		},
 		medium: {
 			id: 6,
-			video: getVideoUrlByTitle('module1'),
+			video: getVideoUrlByTitle('module6'),
 			active: false,
 			title: 'The Role of Transparency and Reporting Mechanisms',
 			description:
@@ -397,7 +397,7 @@ export const modules: ModulesCollection = {
 		},
 		hard: {
 			id: 6,
-			video: getVideoUrlByTitle('module1'),
+			video: getVideoUrlByTitle('module6'),
 			active: false,
 			title: 'Whistle-Blowing, Legal Protections, and Investigation Protocols',
 			description:
