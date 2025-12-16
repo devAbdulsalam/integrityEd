@@ -44,7 +44,6 @@ const Module = () => {
 	getVideoUrlByTitle(`module${id}`);
 	// console.log('videoUrl', );
 
-
 	useEffect(() => {
 		const storedData = localStorage.getItem('user_profile');
 		if (storedData) {
@@ -141,7 +140,7 @@ const Module = () => {
 					</section>
 
 					{/* Types */}
-					<section className="space-y-4">
+					{/* <section className="space-y-4">
 						<h2 className="text-xl font-bold text-foreground">{module.type}</h2>
 						{module.types.map((type, index) => (
 							<ModuleCard
@@ -151,7 +150,7 @@ const Module = () => {
 								description={type.split(':').slice(1).join(':').trim()}
 							/>
 						))}
-					</section>
+					</section> */}
 
 					{/* Analogy */}
 					<section className="space-y-3">
@@ -171,7 +170,6 @@ const Module = () => {
 						</p>
 					</section>
 				</div>
-				
 			</div>
 		</div>
 	);
