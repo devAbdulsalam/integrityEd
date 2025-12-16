@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Loader2, ShieldCheck, Sparkles } from 'lucide-react';
-
+import logo from '@/assets/logo.png';
 const Index = () => {
 	const navigate = useNavigate();
 	const [progress, setProgress] = useState(0);
@@ -98,7 +98,9 @@ const Index = () => {
 							<div className="relative">
 								<div className="absolute inset-0 bg-gradient-to-r from-[#1193d4] to-[#10b981] rounded-2xl blur-lg opacity-50 animate-pulse" />
 								<div className="relative bg-gradient-to-br from-[#1193d4]/20 to-[#10b981]/10 backdrop-blur-sm border border-white/10 p-6 rounded-2xl shadow-2xl">
-									<ShieldCheck className="w-20 h-20 text-white text-center mx-auto" />
+									<div>
+										<img src={logo} className="w-18 h-18 rounded-full" />
+									</div>
 									<motion.div
 										animate={{ rotate: 360 }}
 										transition={{
@@ -191,4 +193,4 @@ const Index = () => {
 	);
 };
 
-export default Index ;
+export default Index;
