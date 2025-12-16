@@ -89,7 +89,7 @@ export default function RatingModal({ isOpen, handleSubmit, handleSkip }) {
 									{renderRatingRow('🧠 Character', 'character')}
 								</div>
 								<p className="text-muted-foreground text-center mb-8">
-									Tell us briefly which area of corruption you want to learn?
+									How can gracie improve your learning experience?
 								</p>
 								<Textarea
 									value={ratings.additionalInfo}
@@ -99,7 +99,7 @@ export default function RatingModal({ isOpen, handleSubmit, handleSkip }) {
 											additionalInfo: e.target.value,
 										}))
 									}
-									placeholder="Describe a scenario where corruption is present and you want a change..."
+									placeholder="Tell us more about your learning needs..."
 									className="mb-6 mt-20 w-full"
 									rows={8}
 								/>
