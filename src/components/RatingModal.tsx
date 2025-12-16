@@ -76,7 +76,7 @@ export default function RatingModal({ isOpen, handleSubmit, handleSkip }) {
 							<div className="p-6 space-y-6">
 								<div>
 									<h2 className="text-xl font-semibold text-slate-800">
-										Rate Gracei 🌟
+										Rate Gracie 🌟
 									</h2>
 									<p className="text-sm text-slate-600">
 										Your feedback helps improve the learning experience.

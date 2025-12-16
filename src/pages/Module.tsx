@@ -108,7 +108,7 @@ const Module = () => {
 						</span>
 					</div>
 					<ProgressBar
-						value={introCompleted ? 50 : 25}
+						value={introCompleted ? 25 : module.progress}
 						label="Module Progress"
 					/>
 				</div>
@@ -138,19 +138,6 @@ const Module = () => {
 							{module.facts}
 						</p>
 					</section>
-
-					{/* Types */}
-					{/* <section className="space-y-4">
-						<h2 className="text-xl font-bold text-foreground">{module.type}</h2>
-						{module.types.map((type, index) => (
-							<ModuleCard
-								key={index}
-								icon={<DollarSign className="w-6 h-6 text-primary" />}
-								title={type.split(':')[0]}
-								description={type.split(':').slice(1).join(':').trim()}
-							/>
-						))}
-					</section> */}
 
 					{/* Analogy */}
 					<section className="space-y-3">

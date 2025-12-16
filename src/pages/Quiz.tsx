@@ -113,6 +113,8 @@ const Quiz = () => {
 		// 	navigate(`/module/${Number(id) + 1}`);
 		// 	return;
 		// }
+
+		setShowResult(false);
 		setIsOpen(true);
 	};
 
