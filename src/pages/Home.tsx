@@ -11,6 +11,7 @@ import {
 	getModulesByMode,
 	getUnCompletedModules,
 	calculateTotalProgress,
+	getCompletedModulesLenght,
 } from '@/data/module';
 import React from 'react';
 
@@ -54,7 +55,8 @@ const Home = () => {
 	const module = getModule('module1', 'easy');
 	const recommendedModules = getUnCompletedModules(modules);
 	const activeModules = getModulesByMode('easy', modules);
-	const isVisualLearner = userData?.learningStyle === 'visual';
+	const completedModules = getCompletedModulesLenght(modules);
+	const isVisualLearner = 'visual';
 	console.log(activeModules);
 	// console.log(moduleset);
 
@@ -130,7 +132,7 @@ const Home = () => {
 							)}
 							<div>
 								<p className="text-sm text-muted-foreground mb-1">
-									Module 1 of {activeModules.length}
+									Module {completedModules + 1} of {activeModules.length}
 								</p>
 								<h2 className="text-xl font-bold text-foreground">
 									{module.title}
@@ -140,11 +142,11 @@ const Home = () => {
 								</p>
 							</div>
 							<ProgressBar
-								value={module?.progress || 0}
+								value={module?.progress || 10}
 								label="Module Progress"
 							/>
 							<Button
-								onClick={() => navigate('/module/1')}
+								onClick={() => navigate(`/module/${activeModules.length + 1}`)}
 								className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
 							>
 								Start Learning

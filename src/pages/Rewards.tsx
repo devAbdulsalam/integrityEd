@@ -48,7 +48,7 @@ const Rewards = () => {
 						</div>
 						<div>
 							<p className="text-4xl font-bold text-foreground mb-2">
-								{userData?.reward || 0}
+								{userData?.reward || 220}
 							</p>
 							<p className="text-muted-foreground">KNTs Earned</p>
 						</div>
