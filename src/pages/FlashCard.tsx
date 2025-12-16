@@ -12,7 +12,7 @@ import {
 	ArrowLeft,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 // Mock AI response generator (in production, this would call an API)
 const generateGracieResponse = (question: string, answer: string): string => {
@@ -95,6 +95,7 @@ const FlashcardQuiz = () => {
 	const [currentCards, setCurrentCards] = useState<Flashcard[]>(() =>
 		getRandomFlashcards(flashcards, 5)
 	);
+		const { id } = useParams();
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [isFlipped, setIsFlipped] = useState(false);
 	const [showDetails, setShowDetails] = useState(false);
@@ -417,7 +418,7 @@ const FlashcardQuiz = () => {
 							New Set of Cards
 						</button>
 						<Button
-							onClick={() => navigate(`/quiz/${quizId}`)}
+							onClick={() => navigate(`/quiz/${id}`)}
 							className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-6 text-lg"
 						>
 							Start Quiz

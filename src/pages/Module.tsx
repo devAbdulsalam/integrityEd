@@ -10,8 +10,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { moduleIntros } from '@/data/characters';
 import { getModule, Difficulty, Module as ModuleType } from '@/data/module';
 import { getModuleDifficulty } from '@/utils/moduleProgression';
-
-import RatingModal from '@/components/RatingModal';
 import { getVideoUrlByTitle } from '@/data/videos';
 
 interface UserProfile {
@@ -26,7 +24,6 @@ const Module = () => {
 	const navigate = useNavigate();
 	const { id } = useParams();
 	const [showIntro, setShowIntro] = useState(true);
-	const [isOpen, setIsOpen] = useState(false);
 	const [introCompleted, setIntroCompleted] = useState(false);
 	const [userData, setUserData] = useState<UserProfile | null>(null);
 	const [currentDifficulty, setCurrentDifficulty] =
@@ -47,23 +44,7 @@ const Module = () => {
 	getVideoUrlByTitle(`module${id}`);
 	// console.log('videoUrl', );
 
-	const handleSubmit = (data) => {
-		console.log('User submitted ratings:', data);
-		// Send to your backend here
-		setIsOpen(false);
-		setShowQuiz(true);
-	};
-	const handleSkip = () => {
-		setIsOpen(false);
-	};
-	const handleShowRatingModal = () => {
-		const isRating = localStorage.getItem('gracei_rating');
-		if (isRating) {
-			setShowQuiz(true);
-			return;
-		}
-		setIsOpen(true);
-	};
+
 	useEffect(() => {
 		const storedData = localStorage.getItem('user_profile');
 		if (storedData) {
@@ -139,7 +120,7 @@ const Module = () => {
 						module={module}
 						videoUrl={videoUrl}
 						showQuiz={showQuiz}
-						setShowQuiz={handleShowRatingModal}
+						setShowQuiz={() => navigate(`/flashcard/${id}`)}
 					/>
 
 					{/* Introduction */}
@@ -190,77 +171,7 @@ const Module = () => {
 						</p>
 					</section>
 				</div>
-				{/* Quiz Section */}
-				<section className="space-y-3 pt-4">
-					<h2 className="text-xl font-bold text-foreground">Flash Cards</h2>
-					<p className="text-muted-foreground">
-						Test your understanding with flash cards.
-					</p>
-					<Button
-						onClick={() => navigate(`/flashcard/${id}`)}
-						variant="outline"
-						className="w-full font-semibold py-6 text-lg"
-					>
-						Flash Cards
-					</Button>
-				</section>
-				{/* Quiz Section */}
-				<AnimatePresence>
-					{showQuiz && (
-						<motion.div
-							initial={{ opacity: 0, y: 20 }}
-							animate={{ opacity: 1, y: 0 }}
-							exit={{ opacity: 0 }}
-							className="border-2 border-blue-200 rounded-2xl overflow-hidden"
-						>
-							<div className="bg-gradient-to-r from-blue-50 to-cyan-50 p-6 border-b border-blue-200">
-								<div className="flex items-center justify-between">
-									<div>
-										<h3 className="text-2xl font-bold text-slate-900">
-											Knowledge Check
-										</h3>
-										<p className="text-slate-600 mt-1">
-											Test your understanding of the video content
-										</p>
-									</div>
-									<div className="flex items-center gap-2 px-3 py-1 bg-white border border-blue-200 rounded-full">
-										<div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
-										<span className="text-sm font-medium text-blue-700">
-											Quiz Unlocked
-										</span>
-									</div>
-								</div>
-							</div>
-
-							{/* Quiz Content Here */}
-							<div className="p-6 bg-white">
-								<div className="text-center py-12">
-									<div className="w-20 h-20 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-full flex items-center justify-center mx-auto mb-6">
-										<SkipForward className="w-10 h-10 text-blue-600" />
-									</div>
-									<h4 className="text-xl font-bold text-slate-900 mb-2">
-										Quiz Ready!
-									</h4>
-									<p className="text-slate-600 max-w-md mx-auto">
-										You've successfully completed the video. The quiz will test
-										your understanding of the concepts covered.
-									</p>
-									<button
-										onClick={() => navigate(`/quiz/${id}`)}
-										className="mt-6 px-8 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-xl font-semibold hover:opacity-90 transition-opacity"
-									>
-										Begin Quiz
-									</button>
-								</div>
-							</div>
-						</motion.div>
-					)}
-				</AnimatePresence>
-				<RatingModal
-					isOpen={isOpen}
-					handleSubmit={handleSubmit}
-					handleSkip={handleSkip}
-				/>
+				
 			</div>
 		</div>
 	);

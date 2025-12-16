@@ -10,6 +10,7 @@ import QuizStreak from '@/components/quiz/QuizStreak';
 import QuizPowerUps, { defaultPowerUps } from '@/components/quiz/QuizPowerUps';
 import QuizFeedback from '@/components/quiz/QuizFeedback';
 import QuizOption from '@/components/quiz/QuizOption';
+import RatingModal from '@/components/RatingModal';
 import { getRandomQuestions, getModuleQuiz } from '@/data/quiz';
 
 interface UserAnswer {
@@ -34,6 +35,7 @@ const BASE_POINTS = 100;
 const Quiz = () => {
 	const navigate = useNavigate();
 	const { id } = useParams();
+	const [isOpen, setIsOpen] = useState(false);
 	const moduleQuestions = getModuleQuiz(`module${id}easy`);
 	const questions = moduleQuestions.slice(0, 5) || getRandomQuestions(5);
 	// console.log('module', id, questions);
@@ -93,6 +95,25 @@ const Quiz = () => {
 		if (currentStreak >= 5) return 3;
 		if (currentStreak >= 3) return 2;
 		return 1;
+	};
+
+	const handleSubmit = (data) => {
+		console.log('User submitted ratings:', data);
+		// Send to your backend here
+		setIsOpen(false);
+		navigate(`/module/${Number(id) + 1}`)
+	};
+	const handleSkip = () => {
+		setIsOpen(false);
+		navigate(`/module/${Number(id) + 1}`)
+	};
+	const handleShowRatingModal = () => {
+		const isRating = localStorage.getItem('gracei_rating');
+		if (isRating) {
+			navigate(`/module/${Number(id) + 1}`)
+			return;
+		}
+		setIsOpen(true);
 	};
 
 	const calculatePoints = (timeRemaining: number, currentStreak: number) => {
@@ -271,15 +292,15 @@ const Quiz = () => {
 								to strengthen your understanding of anti-corruption.
 							</p>
 						)}
-						<div className="space-y-2">
-							<Button
+						<div className="space-y-2 pt-4">
+							{/* <Button
 								onClick={handleSeeQandA}
 								className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
 							>
 								Review Answers
-							</Button>
+							</Button> */}
 							<Button
-								onClick={() => navigate(`/module/${Number(id) + 1}`)}
+								onClick={() => )}
 								variant="outline"
 								className="w-full"
 							>
@@ -384,7 +405,11 @@ const Quiz = () => {
 					</div>
 				</Card>
 			</div>
-
+			<RatingModal
+				isOpen={isOpen}
+				handleSubmit={handleSubmit}
+				handleSkip={handleSkip}
+			/>
 			{/* Feedback Overlay */}
 			{/* <QuizFeedback
 				show={showFeedback}
