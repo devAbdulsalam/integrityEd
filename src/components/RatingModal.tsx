@@ -69,7 +69,7 @@ export default function RatingModal({ isOpen, handleSubmit, handleSkip }) {
 							initial={{ opacity: 0, scale: 0.9, y: 20 }}
 							animate={{ opacity: 1, scale: 1, y: 0 }}
 							exit={{ opacity: 0, scale: 0.9, y: 20 }}
-							className="relative w-full max-w-2xl bg-gradient-to-br from-white to-blue-50 rounded-2xl shadow-2xl border border-slate-200 overflow-hidden"
+							className="relative w-full max-w-xl bg-gradient-to-br from-white to-blue-50 rounded-2xl shadow-2xl border border-slate-200 overflow-hidden"
 						>
 							<div className="p-6 space-y-6">
 								<div>

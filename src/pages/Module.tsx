@@ -33,7 +33,18 @@ const Module = () => {
 		useState<Difficulty>('medium');
 	const [module, setModule] = useState<ModuleType | null>(null);
 	const [showQuiz, setShowQuiz] = useState(false);
-	const videoUrl = getVideoUrlByTitle(`module${id}`);
+	const [videoUrl, setVideoUrl] = useState('');
+	useEffect(() => {
+		const storedData = localStorage.getItem('user_profile');
+		if (storedData.progress >= 100) {
+			const data = getVideoUrlByTitle(`module${id}`);
+			setVideoUrl(data);
+		} else {
+			const data = getVideoUrlByTitle(`module${id}`);
+			setVideoUrl(data);
+		}
+	}, [id]);
+	getVideoUrlByTitle(`module${id}`);
 	// console.log('videoUrl', );
 
 	const handleSubmit = (data) => {
@@ -46,10 +57,7 @@ const Module = () => {
 		setIsOpen(false);
 	};
 	const handleShowRatingModal = () => {
-		const isRating = localStorage.setItem(
-			'gracei_rating',
-			JSON.stringify(userData)
-		);
+		const isRating = localStorage.getItem('gracei_rating');
 		if (isRating) {
 			setShowQuiz(true);
 			return;
@@ -238,11 +246,7 @@ const Module = () => {
 										your understanding of the concepts covered.
 									</p>
 									<button
-										onClick={() =>
-											navigate(
-												`/quiz?module=${id}&difficulty=${currentDifficulty}`
-											)
-										}
+										onClick={() => navigate(`/quiz/${id}`)}
 										className="mt-6 px-8 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-xl font-semibold hover:opacity-90 transition-opacity"
 									>
 										Begin Quiz

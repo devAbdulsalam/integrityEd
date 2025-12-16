@@ -207,8 +207,9 @@ const VideoQuizModule = ({ module, showQuiz, setShowQuiz, videoUrl }) => {
 								/>
 
 								{/* Skip Prevention Dots */}
-								{[25, 50, 75].map((percent) => (
-									<div
+								{[25, 50, 85].map((percent) => (
+									<button
+										onClick={() => skipToPercent(percent)}
 										key={percent}
 										className="absolute top-1/2 w-2 h-2 bg-white/30 rounded-full -translate-y-1/2"
 										style={{ left: `${percent}%` }}
