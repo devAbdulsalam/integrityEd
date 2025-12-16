@@ -108,11 +108,11 @@ const Quiz = () => {
 		navigate(`/module/${Number(id) + 1}`);
 	};
 	const handleShowRatingModal = () => {
-		const isRating = localStorage.getItem('gracei_rating');
-		if (isRating) {
-			navigate(`/module/${Number(id) + 1}`);
-			return;
-		}
+		// const isRating = localStorage.getItem('gracei_rating');
+		// if (isRating) {
+		// 	navigate(`/module/${Number(id) + 1}`);
+		// 	return;
+		// }
 		setIsOpen(true);
 	};
 
@@ -295,14 +295,14 @@ const Quiz = () => {
 						<div className="space-y-2 pt-4">
 							{/* <Button
 								onClick={handleSeeQandA}
-								className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
-							>
+								className="w-full"
+								>
 								Review Answers
-							</Button> */}
+								</Button> */}
 							<Button
 								onClick={handleShowRatingModal}
 								variant="outline"
-								className="w-full"
+								className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
 							>
 								Next Module
 							</Button>

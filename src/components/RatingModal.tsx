@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Textarea } from './ui/textarea';
 
 const emojis = ['😕', '😐', '🙂', '😄', '🤩'];
 
@@ -8,6 +9,7 @@ export default function RatingModal({ isOpen, handleSubmit, handleSkip }) {
 		content: 0,
 		tone: 0,
 		character: 0,
+		additionalInfo: '',
 	});
 
 	const handleRate = (key, value) => {
@@ -69,7 +71,7 @@ export default function RatingModal({ isOpen, handleSubmit, handleSkip }) {
 							initial={{ opacity: 0, scale: 0.9, y: 20 }}
 							animate={{ opacity: 1, scale: 1, y: 0 }}
 							exit={{ opacity: 0, scale: 0.9, y: 20 }}
-							className="relative w-full max-w-xl bg-gradient-to-br from-white to-blue-50 rounded-2xl shadow-2xl border border-slate-200 overflow-hidden"
+							className="relative w-full max-w-md bg-gradient-to-br from-white to-blue-50 rounded-2xl shadow-2xl border border-slate-200 overflow-hidden"
 						>
 							<div className="p-6 space-y-6">
 								<div>
@@ -86,7 +88,21 @@ export default function RatingModal({ isOpen, handleSubmit, handleSkip }) {
 									{renderRatingRow('🎤 Tone', 'tone')}
 									{renderRatingRow('🧠 Character', 'character')}
 								</div>
-
+								<p className="text-muted-foreground text-center mb-8">
+									Tell us briefly which area of corruption you want to learn?
+								</p>
+								<Textarea
+									value={ratings.additionalInfo}
+									onChange={(e) =>
+										setRatings((prev) => ({
+											...prev,
+											additionalInfo: e.target.value,
+										}))
+									}
+									placeholder="Describe a scenario where corruption is present and you want a change..."
+									className="mb-6 mt-20 w-full"
+									rows={8}
+								/>
 								<div className="flex justify-between items-center pt-4">
 									<button
 										onClick={handleSkip}
