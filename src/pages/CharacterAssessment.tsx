@@ -539,14 +539,12 @@ const CharacterAssessment = () => {
 	return (
 		<div className="min-h-screen bg-background pb-6">
 			<div className="max-w-md mx-auto">
-				{/* Header */}
-				<div className="sticky top-0 bg-background/95 backdrop-blur-sm border-b border-border z-50 p-6 pb-4">
-					<button onClick={() => navigate('/index')} className="mb-4">
+				<div className="flex items-center justify-between mb-6">
+					<button onClick={() => navigate(-1)}>
 						<ArrowLeft className="w-6 h-6 text-foreground" />
 					</button>
-					<h1 className="text-2xl font-bold text-foreground mb-4">
-						Characters Lab
-					</h1>
+					<h1 className="text-xl font-bold text-foreground">Characters Lab</h1>
+					<div></div>
 				</div>
 				{/* Header */}
 				<motion.div
