@@ -124,6 +124,64 @@ const Module = () => {
 						label="Module Progress"
 					/>
 				</div>
+
+				{/* Content */}
+				<div className="p-6 space-y-6">
+					<ModuleVideo
+						module={module}
+						videoUrl={videoUrl}
+						showQuiz={showQuiz}
+						setShowQuiz={handleShowRatingModal}
+					/>
+
+					{/* Introduction */}
+					<section className="space-y-3">
+						<h2 className="text-xl font-bold text-foreground">
+							{module.title}
+						</h2>
+						<p className="text-muted-foreground leading-relaxed">
+							{module.description}
+						</p>
+					</section>
+
+					{/* Fact */}
+					<section className="space-y-2">
+						<p className="text-muted-foreground leading-relaxed">
+							{module.facts}
+						</p>
+					</section>
+
+					{/* Types */}
+					<section className="space-y-4">
+						<h2 className="text-xl font-bold text-foreground">{module.type}</h2>
+						{module.types.map((type, index) => (
+							<ModuleCard
+								key={index}
+								icon={<DollarSign className="w-6 h-6 text-primary" />}
+								title={type.split(':')[0]}
+								description={type.split(':').slice(1).join(':').trim()}
+							/>
+						))}
+					</section>
+
+					{/* Analogy */}
+					<section className="space-y-3">
+						<h2 className="text-xl font-bold text-foreground">For example:</h2>
+						<p className="text-muted-foreground leading-relaxed">
+							{module.analogy}
+						</p>
+					</section>
+
+					{/* Action */}
+					<section className="space-y-3">
+						<h2 className="text-xl font-bold text-foreground">
+							What can we do?
+						</h2>
+						<p className="text-muted-foreground leading-relaxed">
+							{module.action}
+						</p>
+					</section>
+				</div>
 				{/* Quiz Section */}
 				<section className="space-y-3 pt-4">
 					<h2 className="text-xl font-bold text-foreground">Flash Cards</h2>
@@ -194,69 +252,11 @@ const Module = () => {
 						</motion.div>
 					)}
 				</AnimatePresence>
-				{/* Content */}
-				<div className="p-6 space-y-6">
-					<ModuleVideo
-						module={module}
-						videoUrl={videoUrl}
-						showQuiz={showQuiz}
-						setShowQuiz={handleShowRatingModal}
-					/>
-
-					{/* Introduction */}
-					<section className="space-y-3">
-						<h2 className="text-xl font-bold text-foreground">
-							{module.title}
-						</h2>
-						<p className="text-muted-foreground leading-relaxed">
-							{module.description}
-						</p>
-					</section>
-
-					{/* Fact */}
-					<section className="space-y-2">
-						<p className="text-muted-foreground leading-relaxed">
-							{module.facts}
-						</p>
-					</section>
-
-					{/* Types */}
-					<section className="space-y-4">
-						<h2 className="text-xl font-bold text-foreground">{module.type}</h2>
-						{module.types.map((type, index) => (
-							<ModuleCard
-								key={index}
-								icon={<DollarSign className="w-6 h-6 text-primary" />}
-								title={type.split(':')[0]}
-								description={type.split(':').slice(1).join(':').trim()}
-							/>
-						))}
-					</section>
-
-					{/* Analogy */}
-					<section className="space-y-3">
-						<h2 className="text-xl font-bold text-foreground">For example:</h2>
-						<p className="text-muted-foreground leading-relaxed">
-							{module.analogy}
-						</p>
-					</section>
-
-					{/* Action */}
-					<section className="space-y-3">
-						<h2 className="text-xl font-bold text-foreground">
-							What can we do?
-						</h2>
-						<p className="text-muted-foreground leading-relaxed">
-							{module.action}
-						</p>
-					</section>
-				</div>
 				<RatingModal
 					isOpen={isOpen}
 					handleSubmit={handleSubmit}
 					handleSkip={handleSkip}
 				/>
-				;
 			</div>
 		</div>
 	);
