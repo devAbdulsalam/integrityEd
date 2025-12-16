@@ -88,7 +88,7 @@ export default function RatingModal({ isOpen, handleSubmit, handleSkip }) {
 									{renderRatingRow('🎤 Tone', 'tone')}
 									{renderRatingRow('🧠 Character', 'character')}
 								</div>
-								<p className="text-muted-foreground text-center mb-8">
+								<p className="text-muted-foreground  mb-6">
 									How can gracie improve your learning experience?
 								</p>
 								<Textarea
@@ -118,7 +118,7 @@ export default function RatingModal({ isOpen, handleSubmit, handleSkip }) {
                       ${
 												isDisabled
 													? 'bg-slate-300 cursor-not-allowed'
-													: 'bg-blue-600 hover:bg-blue-700'
+													: 'bg-primary hover:bg-primary/90'
 											}`}
 									>
 										Submit Rating
