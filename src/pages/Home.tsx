@@ -7,9 +7,9 @@ import { useNavigate } from 'react-router-dom';
 import { ProgressBar } from '@/components/ProgressBar';
 import {
 	getModule,
-	getAllModuleIds,
-	getModuleSet,
+	getRecommendedModule,
 	getModulesByMode,
+	getUnCompletedModules,
 } from '@/data/module';
 import React from 'react';
 
@@ -30,8 +30,11 @@ const avatarOptions = [
 	{ id: 'innovator', emoji: '💡', label: 'Innovator' },
 ];
 
+import { getAllModulesByMode } from '@/data/module';
+import { useModules } from '@/context/ModuleContext';
 const Home = () => {
 	const navigate = useNavigate();
+	const { modules } = useModules();
 	const [userData, setUserData] = React.useState<UserProfile | null>(null);
 
 	React.useEffect(() => {
@@ -47,7 +50,7 @@ const Home = () => {
 		return avatar?.emoji || '👤';
 	};
 	const module = getModule('module1', 'easy');
-	const modules = getModulesByMode('easy');
+	const recommendedModules = getUnCompletedModules( modules);
 	const activeModules = getModulesByMode('easy');
 	const isVisualLearner = userData?.learningStyle === 'visual';
 	console.log(activeModules);
@@ -59,9 +62,7 @@ const Home = () => {
 			<div className="sticky top-0 z-40 bg-background/95 backdrop-blur border-b border-border">
 				<div className="max-w-md mx-auto px-4 py-3 flex items-center justify-between">
 					<HamburgerMenu />
-					<h1 className="font-semibold text-foreground">
-						Anti-Corruption Academy
-					</h1>
+					<h1 className="font-semibold text-foreground">Gracie</h1>
 					<div className="w-10" /> {/* Spacer for balance */}
 				</div>
 			</div>
@@ -87,7 +88,7 @@ const Home = () => {
 					<Card className="p-4 bg-secondary/50 border-border/50 text-center">
 						<BookOpen className="w-6 h-6 text-primary mx-auto mb-2" />
 						<p className="text-2xl font-bold text-foreground">
-							{modules.length}
+							{activeModules.length}
 						</p>
 						<p className="text-xs text-muted-foreground">Modules</p>
 					</Card>
@@ -127,7 +128,7 @@ const Home = () => {
 							)}
 							<div>
 								<p className="text-sm text-muted-foreground mb-1">
-									Module 1 of {modules.length}
+									Module 1 of {activeModules.length}
 								</p>
 								<h2 className="text-xl font-bold text-foreground">
 									{module.title}
@@ -157,7 +158,7 @@ const Home = () => {
 							Recommended For You
 						</h3>
 						<div className="flex gap-3 overflow-x-auto pb-2">
-							{modules.map((module) => (
+							{recommendedModules.map((module) => (
 								<Card className="min-w-[200px] bg-card border-border overflow-hidden">
 									<img
 										src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=200&h=120&fit=crop"

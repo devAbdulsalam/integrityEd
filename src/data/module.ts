@@ -25,28 +25,7 @@ export const modules: ModulesCollection = {
 			id: 1,
 			video: getVideoUrlByTitle('module1'),
 			active: true,
-			title: 'What Is Corruption and Why Should We Care?',
-			description:
-				'Examines the various definitions and devastating effects of corruption, reviewing different understandings, and analysing approaches to measuring corruption.',
-			progress: 0,
-			locked: false,
-			facts:
-				'Corruption is often defined as the abuse of entrusted power for private gain, although expert interpretations vary. It undermines democracy and the rule of law, compromises human rights, and increases poverty and extreme inequalities.',
-			type: 'Types of Corruption',
-			types: [
-				'Bribery: The promise, offering, or giving of an undue advantage to an official, or private sector actor, to influence their actions in the discharge of their duties.',
-				"Embezzlement: The misappropriation or theft of property or funds entrusted to one's care, typically by a public official or corporate officer.",
-				'Abuse of functions: Misusing public power to obtain a benefit, which can apply to patronage, nepotism, cronyism, and sextortion.',
-			],
-			analogy:
-				'Corruption refers to the sort of decay that leads to destruction. This is exemplified historically by the decline of the Roman Empire, where bribery became the norm.',
-			action:
-				'To combat corruption, it is vital to utilize various multi-disciplinary anti-corruption measures that focus on addressing underlying systemic problems.',
-		},
-		medium: {
-			id: 1,
-			video: getVideoUrlByTitle('module1'),
-			active: false,
+
 			title: 'Typologies and Costs of Corruption',
 			description:
 				'Distinguishing between forms of corruption (petty, grand, systemic) and analyzing measurable impacts, particularly economic loss and social inequity.',
@@ -64,6 +43,28 @@ export const modules: ModulesCollection = {
 				'In corrupt systems, wealth is often redistributed to the least needy, making the political system function like a rigged marketplace.',
 			action:
 				'Beyond criminal law, anti-corruption efforts must target institutional corruption, focusing on systematic practices that cause democratic systems to deviate.',
+		},
+		medium: {
+			id: 1,
+			video: getVideoUrlByTitle('module1'),
+			active: false,
+			title: 'What Is Corruption and Why Should We Care?',
+			description:
+				'Examines the various definitions and devastating effects of corruption, reviewing different understandings, and analysing approaches to measuring corruption.',
+			progress: 0,
+			locked: false,
+			facts:
+				'Corruption is often defined as the abuse of entrusted power for private gain, although expert interpretations vary. It undermines democracy and the rule of law, compromises human rights, and increases poverty and extreme inequalities.',
+			type: 'Types of Corruption',
+			types: [
+				'Bribery: The promise, offering, or giving of an undue advantage to an official, or private sector actor, to influence their actions in the discharge of their duties.',
+				"Embezzlement: The misappropriation or theft of property or funds entrusted to one's care, typically by a public official or corporate officer.",
+				'Abuse of functions: Misusing public power to obtain a benefit, which can apply to patronage, nepotism, cronyism, and sextortion.',
+			],
+			analogy:
+				'Corruption refers to the sort of decay that leads to destruction. This is exemplified historically by the decline of the Roman Empire, where bribery became the norm.',
+			action:
+				'To combat corruption, it is vital to utilize various multi-disciplinary anti-corruption measures that focus on addressing underlying systemic problems.',
 		},
 		hard: {
 			id: 1,
@@ -93,28 +94,6 @@ export const modules: ModulesCollection = {
 			id: 2,
 			video: getVideoUrlByTitle('module2'),
 			active: true,
-			title: 'Corruption and Good Governance',
-			description:
-				'Discusses the various meanings of public sector governance and identifies measures of good governance that can prevent or reduce corruption.',
-			progress: 0,
-			locked: false,
-			facts:
-				'Good governance is underpinned by core principles including participation, rule of law, transparency, responsiveness, efficiency, and accountability.',
-			type: 'Principles of Good Governance Violated by Corruption',
-			types: [
-				'Lack of Transparency: Corruption creates secrecy and information barriers.',
-				'Lack of Accountability: Corruption allows decision makers to avoid answering for their actions.',
-				'Failure of Rule of Law: Corrupt practices violate published standards and obstruct fair enforcement of laws.',
-			],
-			analogy:
-				'Good governance is key to accountability, conceptually similar to having "Good Leaders on a Leash."',
-			action:
-				'Governance reforms should focus on improving relationships and creating an infrastructure of integrity.',
-		},
-		medium: {
-			id: 2,
-			video: getVideoUrlByTitle('module2'),
-			active: false,
 			title: 'Core Governance Concepts and Accountability Mechanisms',
 			description:
 				'Explaining the distinction between governance and government and exploring accountability mechanisms.',
@@ -133,6 +112,29 @@ export const modules: ModulesCollection = {
 			action:
 				'Reforms should target the interface between government officials and private actors.',
 		},
+		medium: {
+			id: 2,
+			video: getVideoUrlByTitle('module2'),
+			active: false,
+			title: 'Corruption and Good Governance',
+			description:
+				'Discusses the various meanings of public sector governance and identifies measures of good governance that can prevent or reduce corruption.',
+			progress: 0,
+			locked: false,
+			facts:
+				'Good governance is underpinned by core principles including participation, rule of law, transparency, responsiveness, efficiency, and accountability.',
+			type: 'Principles of Good Governance Violated by Corruption',
+			types: [
+				'Lack of Transparency: Corruption creates secrecy and information barriers.',
+				'Lack of Accountability: Corruption allows decision makers to avoid answering for their actions.',
+				'Failure of Rule of Law: Corrupt practices violate published standards and obstruct fair enforcement of laws.',
+			],
+			analogy:
+				'Good governance is key to accountability, conceptually similar to having "Good Leaders on a Leash."',
+			action:
+				'Governance reforms should focus on improving relationships and creating an infrastructure of integrity.',
+		},
+
 		hard: {
 			id: 2,
 			video: getVideoUrlByTitle('module2'),
@@ -161,6 +163,27 @@ export const modules: ModulesCollection = {
 			id: 3,
 			video: getVideoUrlByTitle('module3'),
 			active: true,
+			title: 'Political Corruption Manifestations and Voter Accountability',
+			description:
+				'Analysis of corruption syndromes and explanations for how democratic accountability mechanisms often fail.',
+			progress: 0,
+			locked: true,
+			facts: 'The level of corruption depends heavily on the political system.',
+			type: 'Voter Accountability Challenges',
+			types: [
+				'Information Hypothesis: Voters lack sufficient information about corrupt activities.',
+				'Trade-off Hypothesis: Voters prioritize competent politicians over honest ones.',
+				'Oligarch and Clan Corruption: Occurs in weak transitional regimes.',
+			],
+			analogy:
+				'In democratic elections, corruption can operate as a hidden mechanism.',
+			action:
+				'Anti-corruption requires strengthening both horizontal and vertical accountability.',
+		},
+		medium: {
+			id: 3,
+			video: getVideoUrlByTitle('module3'),
+			active: false,
 			title: 'Corruption and Comparative Politics',
 			description:
 				'Explores how corruption manifests in different political systems and how institutional design can prevent and combat corruption.',
@@ -178,27 +201,6 @@ export const modules: ModulesCollection = {
 				'Political elites capturing state institutions is analogous to players colluding with football referees.',
 			action:
 				'Anti-corruption approaches should prioritize "deep democratization" to empower the population.',
-		},
-		medium: {
-			id: 3,
-			video: getVideoUrlByTitle('module3'),
-			active: false,
-			title: 'Political Corruption Manifestations and Voter Accountability',
-			description:
-				'Analysis of corruption syndromes and explanations for how democratic accountability mechanisms often fail.',
-			progress: 0,
-			locked: true,
-			facts: 'The level of corruption depends heavily on the political system.',
-			type: 'Voter Accountability Challenges',
-			types: [
-				'Information Hypothesis: Voters lack sufficient information about corrupt activities.',
-				'Trade-off Hypothesis: Voters prioritize competent politicians over honest ones.',
-				'Oligarch and Clan Corruption: Occurs in weak transitional regimes.',
-			],
-			analogy:
-				'In democratic elections, corruption can operate as a hidden mechanism.',
-			action:
-				'Anti-corruption requires strengthening both horizontal and vertical accountability.',
 		},
 		hard: {
 			id: 3,
@@ -927,7 +929,6 @@ export const modules: ModulesCollection = {
 	},
 };
 
-
 export const getModuleSet = (id: string): ModuleSet | null => {
 	return modules[id as keyof typeof modules] || null;
 };
@@ -946,7 +947,10 @@ export const getModulesByMode = (difficulty: Difficulty = 'easy'): Module[] => {
 		.map((moduleSet) => moduleSet[difficulty])
 		.filter((module) => module !== undefined);
 };
-export const getAllModulesByMode = (difficulty: Difficulty = 'easy', modules: ModulesCollection): Module[] => {
+export const getAllModulesByMode = (
+	difficulty: Difficulty = 'easy',
+	modules: ModulesCollection
+): Module[] => {
 	return Object.values(modules)
 		.map((moduleSet) => moduleSet[difficulty])
 		.filter((module) => module !== undefined);
@@ -1046,7 +1050,10 @@ export const calculateTotalProgress = (difficulty?: Difficulty): number => {
  * @param currentProgress - User's current progress
  * @returns Recommended module to work on next
  */
-export const getRecommendedModule = (currentProgress: number): Module => {
+export const getRecommendedModule = (
+	currentProgress: number,
+	modules: ModulesCollection
+): Module => {
 	const allEasyModules = getModulesByMode('easy');
 	const allMediumModules = getModulesByMode('medium');
 	const allHardModules = getModulesByMode('hard');
@@ -1072,6 +1079,11 @@ export const getRecommendedModule = (currentProgress: number): Module => {
 	}
 };
 
+export const getUnCompletedModules = (modules: ModulesCollection): Module[] => {
+	return Object.values(modules)
+		.flatMap((moduleSet) => [moduleSet.easy, moduleSet.medium, moduleSet.hard])
+		.filter((module) => module.progress < 100);
+};
 /**
  * Update module progress
  * @param moduleKey - The module key

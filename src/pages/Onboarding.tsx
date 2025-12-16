@@ -24,7 +24,7 @@ const Onboarding = () => {
 	const [data, setData] = useState<OnboardingData>({
 		username: '',
 		ageRange: '',
-		learningStyle: '',
+		learningStyle: 'visual',
 		learningType: '',
 		learningGuide: '',
 		avatar: '',

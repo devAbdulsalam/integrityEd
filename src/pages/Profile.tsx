@@ -47,6 +47,7 @@ const Profile = () => {
 		localStorage.removeItem('onboarding_completed');
 		localStorage.removeItem('user_profile');
 		localStorage.removeItem('learning_preferences');
+		localStorage.removeItem('modules');
 		window.location.href = '/';
 	};
 

@@ -80,7 +80,7 @@ const Module = () => {
 		}
 	};
 	const handleComplete = () => {
-		markModuleComplete('module1', 'easy');
+		markModuleComplete(`module${id}`, 'easy');
 		navigate(`/flashcard/${id}`);
 		if (userData) {
 			localStorage.setItem(
