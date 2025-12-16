@@ -942,7 +942,7 @@ export const getAllModuleIds = (): string[] => {
  * @param difficulty - The difficulty level to filter by (easy, medium, hard)
  * @returns Array of modules at the specified difficulty level
  */
-export const getModulesByMode = (difficulty: Difficulty = 'easy'): Module[] => {
+export const getModulesByMode = (difficulty: Difficulty = 'easy', modules: ModulesCollection): Module[] => {
 	return Object.values(modules)
 		.map((moduleSet) => moduleSet[difficulty])
 		.filter((module) => module !== undefined);
@@ -1027,23 +1027,28 @@ export const isModuleUnlocked = (
  * @param difficulty - Optional difficulty filter
  * @returns Total progress percentage
  */
-export const calculateTotalProgress = (difficulty?: Difficulty): number => {
+export const calculateTotalProgress = (
+	modules: ModulesCollection,
+	difficulty?: Difficulty
+): number => {
 	const allModules = difficulty
-		? getModulesByMode(difficulty)
+		? getModulesByMode(difficulty, modules)
 		: Object.values(modules).flatMap((moduleSet) => [
 				moduleSet.easy,
 				moduleSet.medium,
 				moduleSet.hard,
 		  ]);
 
-	if (allModules.length === 0) return 0;
+	if (!allModules.length) return 0;
 
 	const totalProgress = allModules.reduce(
 		(sum, module) => sum + module.progress,
 		0
 	);
+
 	return Math.round(totalProgress / allModules.length);
 };
+
 
 /**
  * Get recommended next module based on progress
@@ -1054,9 +1059,9 @@ export const getRecommendedModule = (
 	currentProgress: number,
 	modules: ModulesCollection
 ): Module => {
-	const allEasyModules = getModulesByMode('easy');
-	const allMediumModules = getModulesByMode('medium');
-	const allHardModules = getModulesByMode('hard');
+	const allEasyModules = getModulesByMode('easy', modules);
+	const allMediumModules = getModulesByMode('medium', modules);
+	const allHardModules = getModulesByMode('hard', modules);
 
 	if (currentProgress < 30) {
 		// Recommend next unfinished easy module
@@ -1178,6 +1183,11 @@ export const getModuleStats = () => {
 		completionRate: Math.round((completedModules / totalModules) * 100),
 		availableRate: Math.round((unlockedModules / totalModules) * 100),
 	};
+};
+export const getCompletedModulesLenght = (modules: ModulesCollection) => {
+	return Object.values(modules)
+		.flatMap((moduleSet) => Object.values(moduleSet))
+		.filter((module) => module.progress === 100).length;
 };
 
 // Utility function to format module data for display

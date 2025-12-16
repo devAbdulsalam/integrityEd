@@ -10,6 +10,7 @@ import {
 	getRecommendedModule,
 	getModulesByMode,
 	getUnCompletedModules,
+	calculateTotalProgress,
 } from '@/data/module';
 import React from 'react';
 
@@ -45,13 +46,14 @@ const Home = () => {
 		}
 	}, []);
 
+	const modulesProgress = calculateTotalProgress(modules, 'easy');
 	const getAvatarEmoji = (avatarId: string) => {
 		const avatar = avatarOptions.find((a) => a.id === avatarId);
 		return avatar?.emoji || '👤';
 	};
 	const module = getModule('module1', 'easy');
-	const recommendedModules = getUnCompletedModules( modules);
-	const activeModules = getModulesByMode('easy');
+	const recommendedModules = getUnCompletedModules(modules);
+	const activeModules = getModulesByMode('easy', modules);
 	const isVisualLearner = userData?.learningStyle === 'visual';
 	console.log(activeModules);
 	// console.log(moduleset);
@@ -102,7 +104,7 @@ const Home = () => {
 					<Card className="p-4 bg-secondary/50 border-border/50 text-center">
 						<TrendingUp className="w-6 h-6 text-primary mx-auto mb-2" />
 						<p className="text-2xl font-bold text-foreground">
-							{userData?.progress || 0}%
+							{modulesProgress || 0}%
 						</p>
 						<p className="text-xs text-muted-foreground">Progress</p>
 					</Card>

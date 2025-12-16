@@ -14,6 +14,8 @@ import {
 } from 'lucide-react';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useModules } from '@/context/ModuleContext';
+import { calculateTotalProgress, getAllModulesByMode, getCompletedModulesLenght } from '@/data/module';
 
 interface UserProfile {
 	username: string;
@@ -33,7 +35,13 @@ const avatarOptions = [
 
 const Profile = () => {
 	const navigate = useNavigate();
+	const { modules } = useModules();
 	const [userData, setUserData] = React.useState<UserProfile | null>(null);
+	const completedModules = getCompletedModulesLenght(modules);
+	const allModules = getAllModulesByMode('easy', modules);
+	const modulesProgress = calculateTotalProgress('easy', modules);
+	console.log('modulesProgress', modulesProgress);
+
 
 	React.useEffect(() => {
 		const storedData = localStorage.getItem('user_profile');
@@ -97,7 +105,9 @@ const Profile = () => {
 				<div className="grid grid-cols-2 gap-3">
 					<Card className="p-4 bg-secondary/50 border-border/50">
 						<BookOpen className="w-6 h-6 text-primary mb-2" />
-						<p className="text-2xl font-bold text-foreground">1/5</p>
+						<p className="text-2xl font-bold text-foreground">
+							{completedModules}/{allModules.length}
+						</p>
 						<p className="text-sm text-muted-foreground">Modules Completed</p>
 					</Card>
 					<Card className="p-4 bg-secondary/50 border-border/50">
@@ -122,13 +132,13 @@ const Profile = () => {
 								Overall Progress
 							</span>
 							<span className="text-sm font-semibold text-foreground">
-								{userData ? userData.progress : '0'}%
+								{modulesProgress}%
 							</span>
 						</div>
 						<div className="w-full h-2 bg-progress-bg rounded-full overflow-hidden">
 							<div
 								className="h-full bg-primary transition-all duration-500"
-								style={{ width: userData ? `${userData.progress}%` : '10%' }}
+								style={{ width:  `${modulesProgress}%` || '10%' }}
 							/>
 						</div>
 					</Card>

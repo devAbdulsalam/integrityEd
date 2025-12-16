@@ -86,7 +86,10 @@ const Modules = () => {
 
 					{/* Journey Map View */}
 					<TabsContent value="path" className="mt-4">
-						<LearningPath modules={modules} currentModuleId={currentModuleId} />
+						<LearningPath
+							modules={allModules}
+							currentModuleId={currentModuleId}
+						/>
 					</TabsContent>
 
 					{/* List View */}
